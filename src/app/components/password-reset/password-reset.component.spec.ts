@@ -3,6 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PasswordResetComponent } from './password-reset.component';
 import { Store, StoreModule } from '@ngrx/store';
 import { REDUCER_TOKEN, metaReducers, AppState, reducerProvider } from 'src/app/store/reducers';
+import { FullWidthCenteredContentComponent } from '../full-width-centered-content/full-width-centered-content.component';
+import { InputComponent } from '../input/input.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PasswordResetComponent', () => {
   let component: PasswordResetComponent;
@@ -11,14 +15,18 @@ describe('PasswordResetComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot(REDUCER_TOKEN, {
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        StoreModule.forRoot(REDUCER_TOKEN, {
         metaReducers,
         runtimeChecks: {
           strictStateImmutability: true,
           strictActionImmutability: true,
         }
       }),  ],
-      declarations: [PasswordResetComponent],
+      declarations: [PasswordResetComponent, FullWidthCenteredContentComponent, InputComponent],
       providers: [reducerProvider]
     });
 
