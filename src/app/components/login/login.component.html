@@ -1,0 +1,39 @@
+<app-full-width-centered-content>
+  <section class='d-flex'>
+    <section class='card col-lg-12'>
+      <section class='card-header'>
+        <h1>Login</h1>
+      </section>
+      <form [formGroup]='loginForm' (ngSubmit)='submitLoginForm()' class='card-body form-horizontal'>
+        <app-input [autofocus]='true' [triggerValidation]='triggerValidation' label='Username' placeholder='Enter username/email'
+          icon-lock-filled id='username' formControlName='username' prependIcon='icon-user' autocomplete='username'>
+        </app-input>
+        <app-input [triggerValidation]='triggerValidation' label='Password' placeholder='Enter password' id='password'
+          formControlName='password' prependIcon='icon-lock-filled' autocomplete='current-password' type='password'>
+        </app-input>
+        <section aria-live='polite' role="alert" *ngIf='showErrorMessage' class='alert alert-danger alert-dismissible fade show'>
+
+          <strong class='alert-heading'><i class='icon-user-times'></i> {{ submitError.status }} :
+            {{ submitError.message }}</strong>
+          <p class='mb-0'>{{ submitError.help }}</p>
+          <button type='button' class='close' data-dismiss='alert' (click)='showErrorMessage = false'>&times;</button>
+
+        </section>
+        <section class='d-flex justify-content-end'>
+          <button [disabled]='!loginForm.valid || submitInProgress || showErrorMessage' class='btn btn-success'
+            type='submit'>
+            Submit <span class="sr-only">To Login</span>
+            <i *ngIf='loginForm.valid && !submitInProgress' class='icon-ok'></i>
+            <i *ngIf='submitInProgress' class='icon-spin3 animate-spin'></i>
+          </button>
+
+        </section>
+      </form>
+
+      <section class='card-footer d-flex justify-content-between flex-wrap'>
+        <span>forgot password? <a routerLink='/login/reset'>Reset</a></span>
+        <a title='go to home' routerLink='/'><i class='icon-home'></i></a>
+      </section>
+    </section>
+  </section>
+</app-full-width-centered-content>

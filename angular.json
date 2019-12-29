@@ -25,12 +25,17 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/robots.txt"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -124,6 +129,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "help-me-here"
+    }
+  },
+  "defaultProject": "help-me-here",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
