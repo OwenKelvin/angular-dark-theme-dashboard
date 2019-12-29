@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.less"
             ],
             "scripts": []
@@ -124,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "help-me-here"
+    }
+  },
+  "defaultProject": "help-me-here",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
