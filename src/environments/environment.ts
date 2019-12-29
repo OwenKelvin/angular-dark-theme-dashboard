@@ -6,6 +6,12 @@ export const environment = {
   production: false
 };
 
+export const PASSPORT_CLIENT = {
+  grantType: 'password',
+  clientSecret: 'lEo5ai7oDcSEPjz9sSsUqpvC5Oqlp8tMluGn3K31',
+  clientId: '4'
+};
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

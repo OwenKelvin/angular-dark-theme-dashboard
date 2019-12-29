@@ -9,6 +9,8 @@ import { reducers, metaReducers, REDUCER_TOKEN, reducerProvider } from './store/
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ComponentsModule } from './components/components.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { ComponentsModule } from './components/components.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(REDUCER_TOKEN, {
       metaReducers,
       runtimeChecks: {
@@ -26,7 +29,7 @@ import { ComponentsModule } from './components/components.module';
       }
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    ComponentsModule
+    ComponentsModule,
   ],
   providers: [reducerProvider],
   bootstrap: [AppComponent]

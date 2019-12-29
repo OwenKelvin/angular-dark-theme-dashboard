@@ -8,13 +8,16 @@ import {
 import { environment } from '../../../environments/environment';
 import { InjectionToken } from '@angular/core';
 
+import * as fromToast from './toast.reducer';
+import { IToastState } from 'src/app/interfaces/toast-state.interface';
+
 
 export interface AppState {
-  app: any;
+  [fromToast.toastFeatureKey]: IToastState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  app: null
+  [fromToast.toastFeatureKey]: fromToast.reducer,
 };
 
 export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Registered Reducers');

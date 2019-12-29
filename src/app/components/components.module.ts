@@ -8,6 +8,11 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ToastComponent } from './toast/toast.component';
 import { FullWidthCenteredContentComponent } from './full-width-centered-content/full-width-centered-content.component';
+import { LayoutComponent } from './layout/layout.component';
+import { LoginModule } from './login/login.module';
+import { ComponentsRoutingModule } from './components-routing.module';
+import { InputComponent } from './input/input.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,10 +24,16 @@ import { FullWidthCenteredContentComponent } from './full-width-centered-content
     FooterComponent,
     HeaderComponent,
     ToastComponent,
-    FullWidthCenteredContentComponent
+    FullWidthCenteredContentComponent,
+    LayoutComponent,
+    InputComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ComponentsRoutingModule,
+    LoginModule
   ],
   exports: [
     HomeComponent,
