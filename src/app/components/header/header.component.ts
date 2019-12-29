@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
 
     this.isMenuClosed$.subscribe(isMenuClosed => {
       this.isMenuClosed = isMenuClosed;
-      console.log(this.isMenuClosed);
     });
   }
   toggleMenu(): void {

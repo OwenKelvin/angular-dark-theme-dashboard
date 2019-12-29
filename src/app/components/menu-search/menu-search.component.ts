@@ -30,9 +30,6 @@ export class MenuSearchComponent implements OnInit {
     this.listItems$ = this.linkService.getAllLinks();
 
     this.listItems$.subscribe(items => (this.listItems = items));
-    this.listItems$.subscribe(items => {
-      console.log(items);
-    });
   }
   get search(): FormControl {
     return this.searchForm.get('search') as FormControl;
