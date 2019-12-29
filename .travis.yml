@@ -3,7 +3,7 @@ sudo: false
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=920526923c77a0fdb90bb870b7dcf4736cf89c496aa41342f03582aecebfcda0
+    - CC_TEST_REPORTER_ID=23b92d9a936adb6314f890087f5623a2a082ef47c18317f9289eb75e77069bcc
 
 language: node_js
 node_js:
