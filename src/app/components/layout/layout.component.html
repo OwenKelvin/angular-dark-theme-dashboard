@@ -1,1 +1,15 @@
-<p>layout works!</p>
+<div class='d-flex' [class.toggled]='(isMenuOpen$ | async) === false' id='wrapper'>
+  <app-sidebar></app-sidebar>
+  <div id='page-content-wrapper'>
+    <header>
+      <app-header></app-header>
+    </header>
+    <main class='container-fluid'>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+</div>
+<footer>
+  <app-footer></app-footer>
+</footer>

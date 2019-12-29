@@ -13,6 +13,10 @@ import { LoginModule } from './login/login.module';
 import { ComponentsRoutingModule } from './components-routing.module';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MenuSearchComponent } from './menu-search/menu-search.component';
+import { UserButtonComponent } from './user-button/user-button.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -26,7 +30,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ToastComponent,
     FullWidthCenteredContentComponent,
     LayoutComponent,
-    InputComponent
+    InputComponent,
+    SidebarComponent,
+    MenuSearchComponent,
+    UserButtonComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
