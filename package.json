@@ -25,6 +25,7 @@
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
     "ngx-bootstrap": "^5.2.0",
     "rxjs": "~6.4.0",
