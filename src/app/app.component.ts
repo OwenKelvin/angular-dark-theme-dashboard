@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ServiceWorkerService } from './services/service-worker.service';
 
 export const SECTION_HOME = 'home';
 
@@ -7,7 +8,12 @@ export const SECTION_HOME = 'home';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private serviceWorkerService: ServiceWorkerService) {
+  }
+  ngOnInit() {
+    this.serviceWorkerService.install()
+  }
   currentSection = 'home';
 
   onSectionChange(newSection: string) {
