@@ -1,0 +1,46 @@
+{
+  "name": "Angular Dashboard",
+  "short_name": "Ng-Dashboard",
+  "start_url": "./",
+  "theme_color": "#008080",
+  "background_color": "#008B8B",
+  "display": "standalone",
+  "description": "A PWA that is built with Angular",
+  "icons": [
+    {
+      "src": "/assets/images/icons/android-chrome-192x192.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icons/android-chrome-512x512.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icons/apple-touch-icon.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icons/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icons/mstile-150x150.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icons/safari-pinned-tab.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    }
+  ]
+}
