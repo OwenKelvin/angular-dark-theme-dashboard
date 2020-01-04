@@ -5,10 +5,10 @@
     "ng": "ng",
     "serve": "ng serve",
     "start": "node server.js",
-    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build": "ng build --prod --aot && sw-precache --root=dist --config=precache-config.js"
   },
   "private": true,
   "dependencies": {
@@ -49,6 +49,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
+    "sw-precache-webpack-plugin": "^0.11.5",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
