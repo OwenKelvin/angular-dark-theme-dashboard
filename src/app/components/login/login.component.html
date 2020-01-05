@@ -11,13 +11,19 @@
         <app-input [triggerValidation]='triggerValidation' label='Password' placeholder='Enter password' id='password'
           formControlName='password' prependIcon='icon-lock-filled' autocomplete='current-password' type='password'>
         </app-input>
-        <section aria-live='polite' role="alert" *ngIf='showErrorMessage' class='alert alert-danger alert-dismissible fade show'>
+        <section aria-atomic="true" aria-live='polite' role="alert" *ngIf='showErrorMessage' class='alert alert-danger alert-dismissible fade show'>
 
           <strong class='alert-heading'><i class='icon-user-times'></i> {{ submitError.status }} :
             {{ submitError.message }}</strong>
           <p class='mb-0'>{{ submitError.help }}</p>
           <button type='button' class='close' data-dismiss='alert' (click)='showErrorMessage = false'>&times;</button>
 
+        </section>
+        <section class="form-check ml-2">
+          <input class="form-check-input" type="checkbox" formControlName="remember_me" id="remember-me">
+          <label class="form-check-label" for="remember-me">
+            Remember me
+          </label>
         </section>
         <section class='d-flex justify-content-end'>
           <button [disabled]='!loginForm.valid || submitInProgress || showErrorMessage' class='btn btn-success'

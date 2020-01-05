@@ -11,10 +11,10 @@ export const SECTION_HOME = 'home';
 export class AppComponent implements OnInit {
   constructor(private serviceWorkerService: ServiceWorkerService) {
   }
-  ngOnInit() {
-    this.serviceWorkerService.install()
-  }
   currentSection = 'home';
+  ngOnInit() {
+    this.serviceWorkerService.install();
+  }
 
   onSectionChange(newSection: string) {
     this.currentSection = newSection;

@@ -24,8 +24,7 @@ export class LoginComponent implements OnInit {
     private store: Store<fromStore.AppState>,
     private router: Router,
     private authService: AuthenticationService,
-    private fb: FormBuilder,
-    private appFormService: AppFormService) { }
+    private fb: FormBuilder) { }
   ngOnInit() {
     this.errors = {
       password: null,
@@ -34,6 +33,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
+      remember_me: [false]
     });
   }
   get username() {
@@ -42,12 +42,16 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.loginForm.get('password') as FormControl;
   }
+  get rememberMe() {
+    return this.loginForm.get('remember_me') as FormControl;
+  }
   submitLoginForm() {
     this.submitInProgress = true;
     if (this.loginForm.valid) {
       const username: string = this.username.value;
       const password: string = this.password.value;
-      this.authService.login({ username, password })
+      const rememberMe: boolean = this.rememberMe.value;
+      this.authService.login({ username, password, rememberMe })
         .subscribe(success => {
           this.submitInProgress = false;
           this.store.dispatch(showToast({
