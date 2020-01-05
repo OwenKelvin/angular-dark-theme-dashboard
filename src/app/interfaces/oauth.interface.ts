@@ -5,4 +5,5 @@ export interface OauthInterface {
   username: string;
   password: string;
   scope: string;
+  remember_me?: boolean;
 }

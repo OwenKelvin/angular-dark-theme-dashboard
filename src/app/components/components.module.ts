@@ -17,6 +17,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenuSearchComponent } from './menu-search/menu-search.component';
 import { UserButtonComponent } from './user-button/user-button.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { TelInputComponent } from './tel-input/tel-input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -34,14 +36,16 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     SidebarComponent,
     MenuSearchComponent,
     UserButtonComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    TelInputComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     ComponentsRoutingModule,
-    LoginModule
+    LoginModule,
+    NgSelectModule
   ],
   exports: [
     HomeComponent,

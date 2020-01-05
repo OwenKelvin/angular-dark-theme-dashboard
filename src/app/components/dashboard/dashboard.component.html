@@ -1,1 +1,14 @@
-<p>dashboard works!</p>
+<h1>Dashboard</h1>
+<h2>Form Inputs</h2>
+<form [formGroup]='exampleForm'>
+  <section class='d-flex flex-wrap'>
+    <section class='col-lg-6'>
+        <app-tel-input [autofocus]='true' [triggerValidation]='triggerValidation' label='Phone Number'
+          placeholder='Enter Phone Number' id='phone' formControlName='phone' autocomplete='phone'>
+        </app-tel-input>
+    </section>
+    <section class='col-lg-6'>
+      PHONE NUMBER IS: {{ exampleForm.get('phone').value}}
+    </section>
+  </section>
+</form>

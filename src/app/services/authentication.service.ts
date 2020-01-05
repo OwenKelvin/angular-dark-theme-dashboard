@@ -15,11 +15,19 @@ export class AuthenticationService {
   constructor( private http: HttpClient ) {
     const storedUser = localStorage.getItem('currentUser');
 
-    this.currentUserSubject = new BehaviorSubject<UserInterface>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<UserInterface>(this.currentUserObject);
     this.currentUser = this.currentUserSubject.asObservable();
   }
+  get currentUserObject() {
+    const userObject = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (userObject) {
+      return userObject;
+    } else {
+      return JSON.parse(localStorage.getItem('currentUser'));
+    }
+  }
   get authorizationToken(): string | undefined {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUser = this.currentUserObject;
     if (currentUser) {
       return `Bearer ${currentUser.access_token}`;
     }
@@ -28,26 +36,21 @@ export class AuthenticationService {
   public get currentUserValue(): UserInterface {
     return this.currentUserSubject.value;
   }
-  contactAdmin(data: { email: string }) {
-    // TODO-me Authentication Service Contact admin
-    return of({
-      message: 'Successfully Contacted Admin'
-    });
-  }
   resetPassword(data: { email: string }) {
     // TODO-me Authentication Service reset Password
     return of({
       message: 'Password Reset Successful'
     });
   }
-  login(data: { username: string, password: string }): Observable<any> {
-    const { username, password } = data;
+  login(data: { username: string, password: string, rememberMe: boolean }): Observable<any> {
+    const { username, password, rememberMe } = data;
     const loginData: OauthInterface = {
       grant_type: PASSPORT_CLIENT.grantType,
       client_id: PASSPORT_CLIENT.clientId,
       client_secret: PASSPORT_CLIENT.clientSecret,
       username,
       password,
+      remember_me: rememberMe,
       scope: '',
     };
     const url = `api/oauth/token`;
@@ -58,8 +61,13 @@ export class AuthenticationService {
     };
     return this.http.post<any>(url, loginData, httpOptions)
       .pipe(
-        map( user => {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+        map(user => {
+          if (rememberMe) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+          } else {
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+          }
+
           this.currentUserSubject.next(user);
           return user;
         }),
@@ -70,6 +78,7 @@ export class AuthenticationService {
   }
   logout(): Observable<any> {
     localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     return this.revokeToken();
   }
