@@ -2,7 +2,7 @@
   <button (click)='toggleMenu()' class='btn btn-secondary hidden-sm' id='menu-toggle'>Menu
     <i [class]='isMenuClosed ? "icon-left-big": "icon-right-big"'></i></button>
   <span *ngIf='!isMenuClosed' class="hidden-sm-up">&nbsp;</span>
-  <button *ngIf='isMenuClosed' (click)='toggleMenu()' class="hidden-sm-up btn btn-secondary" type="button">
+  <button aria-label='Toggle Menu' *ngIf='isMenuClosed' (click)='toggleMenu()' class="hidden-sm-up btn btn-secondary" type="button">
     <span class=" icon-indent-left"></span>
   </button>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
