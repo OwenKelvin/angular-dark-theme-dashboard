@@ -3,6 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import { Store, StoreModule } from '@ngrx/store';
 import { REDUCER_TOKEN, metaReducers, AppState, reducerProvider } from 'src/app/store/reducers';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TelInputComponent } from '../tel-input/tel-input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -11,14 +15,20 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot(REDUCER_TOKEN, {
+      imports: [
+        StoreModule.forRoot(REDUCER_TOKEN, {
         metaReducers,
         runtimeChecks: {
           strictStateImmutability: true,
           strictActionImmutability: true,
-        }
-      }), ],
-      declarations: [DashboardComponent],
+         }
+        }),
+        FormsModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        HttpClientTestingModule
+      ],
+      declarations: [DashboardComponent, TelInputComponent],
       providers: [reducerProvider]
     });
 

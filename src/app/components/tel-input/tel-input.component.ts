@@ -37,7 +37,7 @@ export class TelInputComponent extends InputComponent implements OnInit, Validat
   }
 
   ngOnInit() {
-    
+
     this.phoneNumbers.getAllowedCountries().subscribe(data => {
       this.allowedPhoneCountries = data;
     });
