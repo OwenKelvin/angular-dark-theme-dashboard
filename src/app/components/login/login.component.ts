@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       const password: string = this.password.value;
       const rememberMe: boolean = this.rememberMe.value;
       this.authService.login({ username, password, rememberMe })
-        .subscribe(success => {
+        .subscribe(() => {
           this.submitInProgress = false;
           this.store.dispatch(showToast({
             toastHeader: 'Login Successful!',
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           }));
           this.router.navigate(['/dashboard']);
         },
-          error => {
+          (error: any) => {
             this.submitInProgress = false;
             this.submitError = error as MessageInterface;
             this.showErrorMessage = true;

@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
     this.exampleForm = this.fb.group({
       phone: ['']
     });
-    this.exampleForm.get('phone').valueChanges.subscribe(item => console.log(this.exampleForm.get('phone')));
+    this.exampleForm.get('phone')?.valueChanges.subscribe(() => console.log(this.exampleForm.get('phone')));
   }
 
 }

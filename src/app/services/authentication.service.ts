@@ -4,53 +4,71 @@ import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { OauthInterface } from './../interfaces/oauth.interface';
 import { UserInterface } from './../interfaces/user.interface';
 import { map, catchError } from 'rxjs/operators';
-import { PASSPORT_CLIENT } from 'src/environments/environment';
+import { IUserProfile } from '../interfaces/user-profile.interface';
+import {
+  PASSPORT_CLIENT_GRANT_TYPE, PASSPORT_CLIENT_CLIENT_ID, PASSPORT_CLIENT_CLIENT_SECRET
+} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<UserInterface>;
-  public currentUser: Observable<UserInterface>;
-  constructor( private http: HttpClient ) {
-    const storedUser = localStorage.getItem('currentUser');
+  private currentUserSubject: BehaviorSubject<UserInterface | null>;
+  public currentUser: Observable<UserInterface | null>;
+  constructor(private http: HttpClient) {
+    const storedUser: any = JSON.parse(String(localStorage.getItem('currentUser')));
 
-    this.currentUserSubject = new BehaviorSubject<UserInterface>(this.currentUserObject);
+    this.currentUserSubject = new BehaviorSubject<UserInterface>(storedUser);
     this.currentUser = this.currentUserSubject.asObservable();
   }
-  get currentUserObject() {
-    const userObject = JSON.parse(sessionStorage.getItem('currentUser'));
-    if (userObject) {
-      return userObject;
-    } else {
-      return JSON.parse(localStorage.getItem('currentUser'));
-    }
-  }
   get authorizationToken(): string | undefined {
-    const currentUser = this.currentUserObject;
+    const currentUser = JSON.parse(String(localStorage.getItem('currentUser')));
     if (currentUser) {
       return `Bearer ${currentUser.access_token}`;
     }
-
+    return;
   }
-  public get currentUserValue(): UserInterface {
+  public get currentUserValue(): UserInterface | null {
     return this.currentUserSubject.value;
   }
-  resetPassword(data: { email: string }) {
+  public get currentUserProfile$(): Observable<IUserProfile> {
+    return this.http.get('api/users/auth')
+      .pipe(map((res: any) => {
+        return {
+          ...res,
+          id: res.id,
+          firstName: res.first_name,
+          lastName: res.last_name,
+          middleName: res.middle_name,
+          otherNames: res.other_names,
+          phone: res.phone,
+          email: res.email,
+          dateOfBirth: res.date_of_birth,
+          religionName: res.religion_name,
+          genderName: res.gender_name
+        };
+      }));
+  }
+  contactAdmin(_data: { email: string; }) {
+    // TODO-me Authentication Service Contact admin
+    return of({
+      message: 'Successfully Contacted Admin'
+    });
+  }
+  resetPassword(_data: { email: string; }) {
     // TODO-me Authentication Service reset Password
     return of({
       message: 'Password Reset Successful'
     });
   }
-  login(data: { username: string, password: string, rememberMe: boolean }): Observable<any> {
-    const { username, password, rememberMe } = data;
+  login(data: { username: string, password: string; rememberMe: boolean}): Observable<any> {
+    const { username, password } = data;
     const loginData: OauthInterface = {
-      grant_type: PASSPORT_CLIENT.grantType,
-      client_id: PASSPORT_CLIENT.clientId,
-      client_secret: PASSPORT_CLIENT.clientSecret,
+      grant_type: PASSPORT_CLIENT_GRANT_TYPE,
+      client_id: PASSPORT_CLIENT_CLIENT_ID,
+      client_secret: PASSPORT_CLIENT_CLIENT_SECRET,
       username,
       password,
-      remember_me: rememberMe,
       scope: '',
     };
     const url = `api/oauth/token`;
@@ -62,23 +80,17 @@ export class AuthenticationService {
     return this.http.post<any>(url, loginData, httpOptions)
       .pipe(
         map(user => {
-          if (rememberMe) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-          } else {
-            sessionStorage.setItem('currentUser', JSON.stringify(user));
-          }
-
+          localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;
         }),
-        catchError( error => {
+        catchError(error => {
           return throwError(error);
-      })
-    );
+        })
+      );
   }
   logout(): Observable<any> {
     localStorage.removeItem('currentUser');
-    sessionStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     return this.revokeToken();
   }

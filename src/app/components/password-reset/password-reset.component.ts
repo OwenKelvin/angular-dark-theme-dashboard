@@ -14,7 +14,7 @@ export class PasswordResetComponent implements OnInit {
 
   passwordResetForm: FormGroup;
   errors: {
-    email: string;
+    email: string | null;
   };
   constructor(
     private fb: FormBuilder,

@@ -11,7 +11,7 @@ export class ServiceWorkerService {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('service-worker.js').then(reg => {
           reg.onupdatefound = () => {
-            const installingWorker = reg.installing;
+            const installingWorker = reg.installing as ServiceWorker;
 
             installingWorker.onstatechange = () => {
               switch (installingWorker.state) {

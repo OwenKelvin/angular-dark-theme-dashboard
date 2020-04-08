@@ -20,8 +20,7 @@ export class AppComponent implements OnInit {
     this.currentSection = newSection;
   }
 
-  scrollTo(section) {
-    document.querySelector('#' + section)
-      .scrollIntoView();
+  scrollTo(section: string) {
+    document.querySelector('#' + section)?.scrollIntoView();
   }
 }

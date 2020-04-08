@@ -1,42 +1,86 @@
+
 @import './vendor/fontello/css/fontello.css';
 @import './vendor/fontello/css/animation.css';
 @import './vendor/daneden/animate.css';
+@import 'flag-icon-css/css/flag-icon.css';
+
+label {
+  margin-bottom: 0.1rem;
+}
+
+.ng-select-container, .ng-value-container, .ng-input, .ng-value .ng-value-container {
+
+  height: 100%;
+  margin: 0;
+}
+.ng-select .ng-select-container {
+  padding: 0;
+}
+.ng-input input {
+  width: 100%;
+}
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+    padding: 4px;
+    text-align: center;
+    color: black;
+}
+.ng-select .ng-value {
+  background-color: rgb(68, 68, 68) !important;
+  color: white !important;
+  border-radius: 3px !important;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+.ng-dropdown-panel {
+  min-width: 150px !important;
+  width: 150px !important;
+}
 
 html, body {
-  // background: rgb(49, 49, 49);
-  background-color:rgb(49, 49, 49);
-  background-image: linear-gradient(315deg, rgb(49, 49, 49) 0%, #000000 74%);
+  background: rgb(49, 49, 49);
   color: white;
   width: 100%;
   height: 100%;
   overflow: auto;
 }
-// Headings
+
 h1, h2, h3, h4 {
-  font-size: 1.8rem;
-  line-height: 1.8rem;
-  margin-top: 10px;
-  border-left: 5px solid lightblue;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+  margin-top: 2px;
+  border-left: 3px solid lightblue;
   padding: 0px 0px 5px 5px;
   font-weight: 500;
   color: aqua;
 }
-h1 {
-  margin-top: 0px;
-}
 h2 {
-  font-size: 1.5rem;
-  margin-left: 10px;
-  line-height: 1.7rem;
+  font-size: 1.2rem;
+  /* margin-left: 10px; */
+  line-height: 1.2rem;
   font-weight: 500;
+  border-left: 6px solid lightblue;
 }
 h3 {
-  font-size: 1.2rem;
-  margin-left: 13px;
-  line-height: 1.7rem;
+  font-size: 1.1rem;
+  /* margin-left: 13px; */
+  line-height: 1.1rem;
   font-weight: 400;
+  border-left: 9px solid lightblue;
 }
-
+h4 {
+  font-size: 1.0rem;
+  /* margin-left: 13px; */
+  line-height: 1.0rem;
+  font-weight: 300;
+  border-left: 12px solid lightblue;
+}
+legend {
+  font-size: 1.0rem;
+  font-weight: bold;
+}
 .full-height {
   height: 100%;
 }
@@ -60,6 +104,12 @@ a:hover {
 .btn-success {
   background: green;
 }
+.btn-primary {
+  background: rgb(0, 61, 66);
+}
+.btn-primary:hover {
+  background: rgb(0, 117, 128);
+}
 .invalid-feedback {
   
   color: rgb(240, 68, 68);
@@ -75,13 +125,6 @@ a:hover {
   }
 }
 
-.label-value {
-  border: rgba(211, 211, 211, 0.3) solid 2px;
-}
-.label-value, .label-name {
- font-weight: bold;
- line-height: 2em;
-}
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
@@ -130,29 +173,80 @@ a:hover {
   }
 }
 
-// Styles for NGSELECT
-@import "~@ng-select/ng-select/themes/ant.design.theme.css";
-.ng-select-container, .ng-value-container, .ng-input, .ng-value .ng-value-container {
-
-  height: 100%;
-  margin: 0;
+.label-value {
+  border: rgba(211, 211, 211, 0.3) solid 2px;
 }
-.ng-select .ng-select-container {
-  padding: 0;
+.label-value, .label-name {
+ line-height: 2em;
 }
-.ng-input input {
-  width: 100%;
+.label-name{
+  font-weight: bold;
 }
-.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
-    padding: 4px;
-    text-align: center;
-    color: black;
-}
-.ng-dropdown-panel {
-  background: red;
-  min-width: 150px !important;
-  width: 150px !important;
+.modal-container {
+   border: rgba(165, 165, 165, 0.8) solid 2px;
+   border-radius: 5px;
 }
 
-//Flags
-@import 'flag-icon-css/css/flag-icon.css';
+.height-0 {
+  height: 0;
+}
+.btn-xs {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 0.9rem;;
+}
+.text-success {
+  color: rgb(129, 211, 82) !important ;
+}
+.text-danger {
+  color: #F88A99 !important;
+}
+.btn-info {
+  background-color: #178192; 
+  
+}
+:focus {
+    outline-style: ridge;
+    outline-color: rgba(153, 205, 50, 0.5);
+    outline-width: 2px;
+}
+#main {
+  padding-left: 10px;
+}
+#main:focus, #main:focus-within{
+  outline: none;
+  border-left: 3px solid rgba(172, 255, 47, 0.3);
+   padding-left: 7px;
+  min-height: calc(100%);
+}
+
+.aquamarine {
+  color: aquamarine;
+}
+.upload-profile-pic {
+  position: absolute;
+  width: 95%;
+  height: 95%;
+}
+.upload-profile-pic:hover {
+  color: blue;
+   background-color: rgba(128, 128, 128, 0.7);
+}
+.upload-profile-pic button{
+ 
+  width: 95%;
+  height: 95%;
+}
+.upload-profile-pic button:hover span, .upload-profile-pic button:hover span{
+  border-radius: 20px;
+  border: 2px solid;
+}
+.prof-pic-loading{
+  width: 95%;
+  height: 95%;
+  font-size: 1.5rem; color: rgba(115, 136, 74, 0.8); position: absolute;
+  padding: 0.1rem;
+}
+.custom-control-label, .custom-control-input{
+ cursor: pointer !important; 
+}

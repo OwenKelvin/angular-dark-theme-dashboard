@@ -13,23 +13,14 @@ export class PhoneNumbersService {
     this.lib = require('google-libphonenumber');
     this.phoneUtil = this.lib.PhoneNumberUtil.getInstance();
   }
-  getAllowedCountries(): Observable<any> {
-    const url = 'api/phones/allowed-countries';
-    return this.http.get<any>(url)
-      .pipe(map(data => {
-        return data;
-      },
-        error => {
-          // Error Has been captured by interceptor
-        }
-      ));
-  }
+  getAllowedCountries: () => Observable<any> = () =>  this.http.get<any>('api/phones/allowed-countries')
+
   getAllCountryCodes(): Observable<any> {
     const countries = require('google-libphonenumber').shortnumbermetadata.countryCodeToRegionCodeMap['0'];
-    return of(countries.map(country => {
+    return of(countries.map((country: any) => {
       const code = this.phoneUtil.getCountryCodeForRegion(country);
       return { code, country };
-    }).sort((a, b) => {
+    }).sort((a: any, b: any) => {
       const nameA = a.country.toUpperCase(); // ignore upper and lowercase
       const nameB = b.country.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
@@ -43,7 +34,7 @@ export class PhoneNumbersService {
       return 0;
     }));
   }
-  isValidPhoneNumber(phoneNumber) {
+  isValidPhoneNumber(phoneNumber: any) {
     try {
       const testNumber = this.phoneUtil.parseAndKeepRawInput('+' + phoneNumber, 'KE');
       return this.phoneUtil.isPossibleNumber(testNumber);

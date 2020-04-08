@@ -41,7 +41,7 @@ describe('LoginComponent', async () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    store = TestBed.get<Store<AppState>>(Store);
+    store = TestBed.inject<Store<AppState>>(Store);
 
     spyOn(store, 'dispatch').and.callThrough();
     fixture.detectChanges();
@@ -58,10 +58,10 @@ describe('LoginComponent', async () => {
   describe('Function submitLoginForm', () => {
     let spyAuthServiceLogin;
     let spyAuthServiceRouter;
-    let spyComponent;
-    beforeEach(inject([AuthenticationService], (authService: AuthenticationService) => {
-      component.loginForm.get('username').setValue('admin@admin.com');
-      component.loginForm.get('password').setValue('password');
+    let spyComponent: any;
+    beforeEach(inject([AuthenticationService], (_authService: AuthenticationService) => {
+      component.loginForm.get('username')?.setValue('admin@admin.com');
+      component.loginForm.get('password')?.setValue('password');
       spyComponent = Object.create(component);
       spyComponent.authService = { login: () => of(true) };
 
@@ -89,8 +89,8 @@ describe('LoginComponent', async () => {
     fixture.detectChanges();
     component.submitLoginForm();
     expect(component).toBeTruthy();
-    component.loginForm.get('username').setValue('admin@admin.com');
-    component.loginForm.get('password').setValue('password');
+    component.loginForm.get('username')?.setValue('admin@admin.com');
+    component.loginForm.get('password')?.setValue('password');
     fixture.detectChanges();
     component.submitLoginForm();
   });

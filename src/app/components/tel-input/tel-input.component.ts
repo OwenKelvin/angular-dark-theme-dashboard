@@ -57,13 +57,13 @@ export class TelInputComponent extends InputComponent implements OnInit, Validat
   }
   ngAfterViewInit() {
     const queryStrimg = '#' + this.id + '-container .ng-input [role=combobox]';
-    document.querySelector(queryStrimg).setAttribute('aria-label', 'Select country code');
+    document.querySelector(queryStrimg)?.setAttribute('aria-label', 'Select country code');
   }
   get localeCountryCode() {
     // TODO-me set country code as per user locale
     return 254;
   }
-  validatePhone(phone): void {
+  validatePhone(phone: any): void {
     if (!this.phoneNumbers.isValidPhoneNumber(phone)) {
       this.formControl.markAsDirty();
       this.fieldError = 'The Phone Number Entered is Invalid';

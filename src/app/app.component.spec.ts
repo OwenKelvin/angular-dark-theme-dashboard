@@ -53,7 +53,7 @@ describe('AppComponent', () => {
       const component = fixture.debugElement.componentInstance;
       const homeElement = document.createElement('home');
       homeElement.setAttribute('id', 'home');
-      document.querySelector('body').append(homeElement);
+      document.querySelector('body')?.append(homeElement);
       const spyObj = spyOn(document, 'querySelector').and.returnValue(jasmine.createSpyObj({ scrollIntoView: () => true }));
       component.scrollTo('home');
       fixture.detectChanges();

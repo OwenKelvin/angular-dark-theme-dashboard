@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 export class LinkService {
 
   constructor() { }
-  getLinks({ type, id }): Observable<ILink[]> {
+  getLinks({ type } : any): Observable<ILink[]> {
     switch (type) {
       default:
         return this.getDashboardLinks();

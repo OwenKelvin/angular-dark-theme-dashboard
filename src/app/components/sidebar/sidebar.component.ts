@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit {
       this.store.dispatch(showMenu());
     }
   }
-  goto($event: MouseEvent, b) {
+  goto($event: MouseEvent, _b: any) {
     $event.stopPropagation(); // Only seems to
     $event.preventDefault(); // work with both
   }
