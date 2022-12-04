@@ -26,7 +26,7 @@
     "@ngrx/store": "^9.0.0",
     "@ngrx/store-devtools": "^9.0.0",
     "bootstrap": "^4.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "flag-icon-css": "^3.4.6",
     "google-libphonenumber": "^3.2.7",
     "jquery": "^3.4.1",
